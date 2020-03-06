@@ -6,7 +6,8 @@
 
 <script>
 import StartForm from '@/components/StartForm';
-import {eventBus} from '@/main.js'
+import {eventBus} from '@/main.js';
+import { shuffle } from 'lodash';
 
 export default {
   name: 'App',
@@ -32,7 +33,6 @@ export default {
       this.questions = questions.results;
       this.formattedQuestions(questions.results);
     })
-    this.shuffle(this.answers);
   })
   },
 
@@ -48,6 +48,7 @@ export default {
        newArray.push(question.incorrect_answers[0])
        newArray.push(question.incorrect_answers[1])
        newArray.push(question.incorrect_answers[2])
+       newArray = shuffle(newArray)
        this.answers.push(newArray)
      })
    },
@@ -67,16 +68,16 @@ export default {
    // }
 
     shuffle: function(array) {
-      let ctr = array.length, temp, index;
+      let counter = array.length, temp, index;
   // While there are elements in the array
-      while (ctr > 0) {
+      while (counter > 0) {
   // Pick a random index
-          index = Math.floor(Math.random() * ctr);
-  // Decrease ctr by 1
-          ctr--;
+          index = Math.floor(Math.random() * counter);
+  // Decrease counter by 1
+          counter--;
   // And swap the last element with it
-          temp = array[ctr];
-          array[ctr] = array[index];
+          temp = array[counter];
+          array[counter] = array[index];
           array[index] = temp;
       }
       return array;
