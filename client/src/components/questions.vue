@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <h4 v-html='questions.question'></h4>
+    <h4 v-if="questions" v-html='questions.question'></h4>
     <button v-for="(answer, index) in answers" :disabled="disabled"
     @click="handleClick($event, index)"
     :class=""
