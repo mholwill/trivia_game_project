@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <h1>TRIVIA GAME</h1>
-    <component v-bind:is='component' :categories='categories' :questions="questions[index]" :answers="answers[index]"/>
-    <h2 v-if="questions.length">{{this.total}}/10</h2>
+    <component v-bind:is='component' :categories='categories' :questions="questions[index]" :answers="answers[index]" :total="total"/>
   </div>
 </template>
 
@@ -35,23 +34,27 @@ export default {
     eventBus.$on('category-selected', (payload) => {
       this.selectedCategory = payload;
 
-      fetch(`https://opentdb.com/api.php?amount=10&category=${this.selectedCategory.id}&difficulty=${this.selectedCategory.difficulty}&type=multiple`)
-        .then(res => res.json())
-        .then((questions) => {
-          this.questions = questions.results;
-          this.formattedQuestions(questions.results);
-        })
-        if (this.component === StartForm) {
-          this.component = Questions;
-        } else {
-          this.component = StartForm;
-        }
-        })
-        eventBus.$on('answer-selected', (payload) => {
-           this.index += 1;
-           this.total += payload;
-        })
-
+    fetch(`https://opentdb.com/api.php?amount=10&category=${this.selectedCategory.id}&difficulty=${this.selectedCategory.difficulty}&type=multiple`)
+      .then(res => res.json())
+      .then((questions) => {
+        this.questions = questions.results;
+        this.formattedQuestions(questions.results);
+      })
+      if (this.component === StartForm) {
+        this.component = Questions;
+      } else {
+        this.component = StartForm;
+      }
+      })
+      eventBus.$on('answer-selected', (payload) => {
+         this.index += 1;
+         this.total += payload;
+         if( this.index === 10){
+           this.component = EndScore;
+         } else {
+           this.component = Questions;
+         }
+      })
     },
   components: {
     StartForm,

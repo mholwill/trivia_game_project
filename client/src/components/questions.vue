@@ -5,6 +5,7 @@
     @click="handleClick($event, index)"
     :class=""
     v-html='answer'></button>
+    <h2>{{total}}/10</h2>
   </div>
 </template>
 
@@ -13,7 +14,7 @@ import {eventBus} from '@/main.js'
 import {decode} from 'decode-html';
 export default {
   name:"question-asked",
-  props:['questions', 'answers'],
+  props:['questions', 'answers', 'total'],
   data(){
     return{
       disabled: false
