@@ -1,11 +1,11 @@
 <template lang="html">
-<div>
-  <h4 v-html='questions.question'></h4>
-  <button v-for="(answer, index) in answers" :disabled="disabled"
-  @click="handleClick($event, index)"
-  :class=""
-  v-html='answer'></button>
-</div>
+  <div>
+    <h4 v-html='questions.question'></h4>
+    <button v-for="(answer, index) in answers" :disabled="disabled"
+    @click="handleClick($event, index)"
+    :class=""
+    v-html='answer'></button>
+  </div>
 </template>
 
 <script>
@@ -20,7 +20,6 @@ export default {
     }
   },
   methods: {
-
     handleClick: function(event, index) {
       let payload = 0;
       this.disabled = true;
@@ -36,7 +35,6 @@ export default {
         this.disabled = false;
         eventBus.$emit('answer-selected', payload);
       }, 2000)
-
     }
   }
 }

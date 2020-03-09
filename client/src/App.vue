@@ -2,17 +2,20 @@
   <div id="app">
     <h1>TRIVIA GAME</h1>
     <start-form :categories="categories"/>
-    <a-question v-if="questions.length" :questions="questions[index]" :answers="answers[index]"/>
+    <a-question v-if="questions.length" :questions="questions[index]" :answers="answers[index]" />
     <h2 v-if="questions.length">{{this.total}}/10</h2>
+    <final-score v-if="" :total="total" :questions="questions"/>
   </div>
 </template>
 
 <script>
-import StartForm from '@/components/StartForm';
+import StartForm from '@/components/StartForm.vue';
 import {eventBus} from '@/main.js';
 import { shuffle } from 'lodash';
 import {decode} from 'decode-html';
 import Questions from '@/components/Questions.vue';
+import EndScore from '@/components/EndScore.vue'
+
 export default {
   name: 'App',
   data(){
@@ -48,7 +51,8 @@ export default {
       },
     components: {
       'start-form': StartForm,
-      'a-question': Questions
+      'a-question': Questions,
+      'final-score': EndScore
     },
     methods: {
       formattedQuestions: function (questions) {
