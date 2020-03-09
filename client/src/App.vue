@@ -2,7 +2,7 @@
   <div id="app">
     <start-form :categories="categories"/>
     <a-question v-if="questions.length" :questions="questions[index]" :answers="answers[index]"/>
-    <h2>{{this.total}}/10</h2>
+    <h2 v-if="questions.length">{{this.total}}/10</h2>
   </div>
 </template>
 
