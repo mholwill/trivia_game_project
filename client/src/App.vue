@@ -42,48 +42,45 @@ export default {
           this.formattedQuestions(questions.results);
         })
         if (this.component === StartForm) {
-        this.component = Questions;
-      } else {
-        this.component = StartForm;
-      }
+          this.component = Questions;
+        } else {
+          this.component = StartForm;
+        }
         })
         eventBus.$on('answer-selected', (payload) => {
            this.index += 1;
            this.total += payload;
         })
 
-      },
-    components: {
-      StartForm,
-      Questions,
-      EndScore
-      // 'start-form': StartForm,
-      // 'a-question': Questions,
-      // 'final-score': EndScore
     },
-    methods: {
-      formattedQuestions: function (questions) {
-        questions.forEach((question) => {
-          let newArray = []
-          newArray.push(question.correct_answer)
-          newArray.push(question.incorrect_answers[0])
-          newArray.push(question.incorrect_answers[1])
-          newArray.push(question.incorrect_answers[2])
-          newArray = shuffle(newArray)
-          this.answers.push(newArray)
-        })
-      }
+  components: {
+    StartForm,
+    Questions,
+    EndScore
+  },
+  methods: {
+    formattedQuestions: function (questions) {
+      questions.forEach((question) => {
+        let newArray = []
+        newArray.push(question.correct_answer)
+        newArray.push(question.incorrect_answers[0])
+        newArray.push(question.incorrect_answers[1])
+        newArray.push(question.incorrect_answers[2])
+        newArray = shuffle(newArray)
+        this.answers.push(newArray)
+      })
     }
   }
-  </script>
+}
+</script>
 
-  <style>
-    #app {
-      font-family: Avenir, Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-align: center;
-      color: black;
-      margin-top: 60px;
-    }
-  </style>
+<style>
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: black;
+    margin-top: 60px;
+  }
+</style>
