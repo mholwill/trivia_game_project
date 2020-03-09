@@ -2,10 +2,12 @@
   <div id="start-form">
     <form @submit.prevent="handleSubmit">
       <select  v-model="choosenCategory">
+        <option value="" disabled selected hidden>Choose a category</option>
         <option v-for="(category, index) in categories" :key="index" :value="category.id">{{category.name}}</option>
       </select>
       <select v-model="difficulty">
-  			<option value="easy">Easy</option>
+        <option value="" disabled selected hidden>Choose a difficulty</option>
+  			<option selected value="easy">Easy</option>
   			<option value="medium">Medium</option>
   			<option value="hard">Hard</option>
 		</select>
