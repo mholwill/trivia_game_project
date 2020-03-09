@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import {he} from 'he';
 import {eventBus} from '@/main.js';
 
 export default {
@@ -36,7 +35,6 @@ export default {
         difficulty: this.difficulty
       }
       eventBus.$emit('category-selected', payload)
-
     }
   }
 }

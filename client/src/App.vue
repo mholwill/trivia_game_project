@@ -1,10 +1,8 @@
 <template>
   <div id="app">
     <h1>TRIVIA GAME</h1>
-    <start-form :categories="categories"/>
-    <a-question v-if="questions.length" :questions="questions[index]" :answers="answers[index]" />
+    <component v-bind:is='component' :categories='categories' :questions="questions[index]" :answers="answers[index]"/>
     <h2 v-if="questions.length">{{this.total}}/10</h2>
-    <final-score v-if="" :total="total" :questions="questions"/>
   </div>
 </template>
 
@@ -25,7 +23,8 @@ export default {
       questions: [],
       answers: [],
       index: 0,
-      total: 0
+      total: 0,
+      component: StartForm
     }
   },
   mounted(){
@@ -42,6 +41,11 @@ export default {
           this.questions = questions.results;
           this.formattedQuestions(questions.results);
         })
+        if (this.component === StartForm) {
+        this.component = Questions;
+      } else {
+        this.component = StartForm;
+      }
         })
         eventBus.$on('answer-selected', (payload) => {
            this.index += 1;
@@ -50,9 +54,12 @@ export default {
 
       },
     components: {
-      'start-form': StartForm,
-      'a-question': Questions,
-      'final-score': EndScore
+      StartForm,
+      Questions,
+      EndScore
+      // 'start-form': StartForm,
+      // 'a-question': Questions,
+      // 'final-score': EndScore
     },
     methods: {
       formattedQuestions: function (questions) {
