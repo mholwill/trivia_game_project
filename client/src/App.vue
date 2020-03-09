@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1>TRIVIA GAME</h1>
     <start-form :categories="categories"/>
     <a-question v-if="questions.length" :questions="questions[index]" :answers="answers[index]"/>
     <h2 v-if="questions.length">{{this.total}}/10</h2>
@@ -10,6 +11,7 @@
 import StartForm from '@/components/StartForm';
 import {eventBus} from '@/main.js';
 import { shuffle } from 'lodash';
+import {decode} from 'decode-html';
 import Questions from '@/components/Questions.vue';
 export default {
   name: 'App',

@@ -1,36 +1,54 @@
 <template lang="html">
 <div>
-  <h4 >
-    {{questions.question}}</h4>
-
-  <button @click="handleClick(index)" v-for="(answer, index) in answers">{{answer}}</button>
-
+  <h4 v-html='questions.question'></h4>
+  <button v-for="(answer, index) in answers" :disabled="disabled"
+  @click="handleClick($event, index)"
+  :class=""
+  v-html='answer'></button>
 </div>
 </template>
 
 <script>
 import {eventBus} from '@/main.js'
+import {decode} from 'decode-html';
 export default {
   name:"question-asked",
+  props:['questions', 'answers'],
   data(){
     return{
-      selectedAnswer: ""
+      disabled: false
     }
   },
-  props:['questions', 'answers'],
   methods: {
 
-    handleClick: function(index) {
+    handleClick: function(event, index) {
       let payload = 0;
+      this.disabled = true;
       if (this.questions.correct_answer === this.answers[index]) {
         payload += 1
+        event.target.classList.add('correct')
+      } else {
+        event.target.classList.add('wrong')
       }
-      console.log(this.questions.correct_answer, this.answers[index]);
-      eventBus.$emit('answer-selected', payload);
+      setTimeout(() => {
+        event.target.classList.remove('correct')
+        event.target.classList.remove('wrong')
+        this.disabled = false;
+        eventBus.$emit('answer-selected', payload);
+      }, 2000)
+
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
+
+.correct {
+  background-color: green;
+}
+
+.wrong {
+  background-color: red;
+}
 </style>
