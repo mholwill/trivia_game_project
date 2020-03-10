@@ -28,7 +28,7 @@ export default {
       answers: [],
       index: 0,
       total: 0,
-      component: EndScoreForm
+      component: StartForm
     }
   },
   mounted(){
@@ -45,8 +45,8 @@ export default {
         this.questions = questions.results;
         this.formattedQuestions(questions.results);
       })
-      if (this.component === EndScoreForm) {
-        this.component = Questions;
+      if (this.component === StartForm) {
+        this.component = EndScore;
       } else {
         this.component = StartForm;
       }
@@ -59,6 +59,14 @@ export default {
          } else {
            this.component = Questions;
          }
+      }),
+      eventBus.$on('saveyourscore', (payload) => {
+        if(this.component === EndScore) {
+          this.component = EndScoreForm
+        }
+        else {
+          this.component = EndScore
+        }
       })
     },
   components: {

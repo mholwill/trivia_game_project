@@ -6,13 +6,21 @@
     <li v-html="question.question"></li>
     <li v-html="question.correct_answer"></li>
   </ul>
+  <button @click="handleClick">Would you like to save your score?</button>
   </div>
 </template>
 
 <script>
+import {eventBus} from '@/main.js'
+
 export default {
   name: 'end-score',
-  props: ['questionsAsked', 'total']
+  props: ['questionsAsked', 'total'],
+  methods: {
+    handleClick: function (payload) {
+      eventBus.$emit('saveyourscore', payload)
+    }
+  }
 }
 </script>
 
