@@ -18,4 +18,15 @@ export default {
 
 <style lang="css" scoped>
 
+#finalscore {
+  display: flex;
+  justify-content: center;
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
+  text-align: center;
+}
+
 </style>

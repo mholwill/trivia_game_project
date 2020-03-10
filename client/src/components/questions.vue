@@ -4,12 +4,14 @@
       <h4 v-if="questions" v-html='questions.question'></h4>
     </div>
     <div id="buttons">
-      <button v-for="(answer, index) in answers" :disabled="disabled"
+      <button class="button-style bouncer" v-for="(answer, index) in answers" :disabled="disabled"
       @click="handleClick($event, index)"
       :class=""
       v-html='answer'></button>
     </div>
-    <h2>{{total}}/10</h2>
+    <div class="score">
+      <h2>{{total}}/10</h2>
+    </div>
   </div>
 </template>
 
@@ -50,14 +52,17 @@ export default {
 
 <style lang="css" scoped>
 
+
+
 #buttons {
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
 
-button {
+.button-style {
   margin-top: 20px;
+  border: 2px #1C3144 solid;
   width: 50%;
   margin-left: auto;
   margin-right: auto;
@@ -65,27 +70,67 @@ button {
   cursor: pointer;
   color: black;
   border-radius: 8px;
+  font-size: 1em;
+  font-family: 'Quicksand', sans-serif;
+  outline: none;
 }
 
-button:hover{
+.button-style:hover{
+  box-shadow: 0 8px 16px 0 #A2AEBB, 0 6px 20px 0 #A2AEBB
+}
 
+@keyframes bounce {
+  0% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(-1deg);
+  }
+}
+
+.bouncer {
+  animation-name: bounce;
+  animation-iteration-count: 5;
+  animation-play-state: running;
+  animation-timing-function: linear;
+  animation-delay: 5s;
+  animation-duration: 0.2s;
+  display: inline-block;
+}
+
+.bouncer:nth-of-type(odd) {
+  animation-direction: alternate;
+}
+
+.bouncer:nth-of-type(even) {
+  animation-direction: alternate-reverse;
 }
 
 .question {
   background-color: white;
-  border: 1px black solid;
+  border: 2px #1C3144 solid;
   padding: 20px;
   border-radius: 8px;
   width: 70%;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
+}
+
+.score {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.score {
+  font-size: 3em;
 }
 
 .correct {
-  background-color: green;
+  background-color: #3EA03B;
 }
 
 .wrong {
-  background-color: red;
+  background-color: #d00000;
 }
 </style>

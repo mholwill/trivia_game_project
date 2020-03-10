@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <h1>EXAMEN?</h1>
-    <div class="menu">
-      <li>Start Form</li>
-      <li>Top Scores</li>
-    </div>
+    <h1>QUIZ</h1>
+  <div class="menu">
+    <li>Start Form</li>
+    <li>Top Scores</li>
+  </div>
     <component v-bind:is='component' :categories='categories' :questions="questions[index]" :answers="answers[index]" :questionsAsked="questions" :total="total"/>
   </div>
 </template>
@@ -85,9 +85,10 @@ export default {
 
   @import url('https://fonts.googleapis.com/css?family=Quicksand:600&display=swap');
 
+  @import url('https://fonts.googleapis.com/css?family=Bowlby+One+SC&display=swap');
+
   #app {
     font-family: 'Quicksand', sans-serif;
-    text-align: center;
     color: black;
     margin-top: 60px;
   }
@@ -97,17 +98,22 @@ export default {
     flex-direction: row;
     justify-content: center;
     margin-bottom: 30px;
+    text-align: center;
   }
 
   .menu li {
     text-decoration: none;
     list-style: none;
-    padding-right: 30px;
+    padding: 0 30px;
     margin-bottom: 20px;
   }
 
   h1 {
+    font-family: 'Bowlby One SC', cursive;
     font-size: 6em;
     line-height: 30px;
+    text-align: center;
+    color: #FFBA08;
+    -webkit-text-stroke: 2px black;
   }
 </style>
