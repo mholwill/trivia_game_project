@@ -6,8 +6,7 @@
     <div id="buttons">
       <button class="button-style bouncer" v-for="(answer, index) in answers" :disabled="disabled"
       @click="handleClick($event, index)"
-      :class=""
-      v-html='answer'></button>
+      v-html='answer' ref="button"></button>
       <audio ref='audioCorrect' src='../../public/sounds/Mario-coin-sound.mp3'></audio>
       <audio ref='audioWrong' src='../../public/sounds/Wrong-answer-sound-effect.mp3'></audio>
     </div>
@@ -30,6 +29,10 @@ export default {
   },
   methods: {
     handleClick: function(event, index) {
+      this.$refs.button.forEach(button => {
+        button.classList.remove('bouncer')
+      })
+
       let payload = 0;
       this.disabled = true;
       // if (this.questions.correct_answer){
@@ -44,6 +47,9 @@ export default {
         this.$refs.audioWrong.play();
       }
       setTimeout(() => {
+        this.$refs.button.forEach(button => {
+          button.classList.add('bouncer')
+        })
         event.target.classList.remove('correct')
         event.target.classList.remove('wrong')
         this.disabled = false;
@@ -95,11 +101,11 @@ export default {
 .bouncer {
   animation-name: bounce;
   animation-iteration-count: 5;
-  animation-play-state: running;
   animation-timing-function: linear;
   animation-delay: 5s;
   animation-duration: 0.2s;
   display: inline-block;
+  animation-play-state: running;
 }
 
 .bouncer:nth-of-type(odd) {

@@ -78,10 +78,11 @@ export default {
   methods: {
     formattedQuestions: function (questions) {
       questions.forEach((question) => {
-        let newArray = [...question.incorrect_answers]
-        newArray.push(question.correct_answer)
+        let newArray = [...question.incorrect_answers, question.correct_answer]
+
         newArray = shuffle(newArray)
-        this.answers.push(newArray)
+
+        this.answers = [...this.answers, newArray]
       })
     }
   }
