@@ -18,4 +18,9 @@ export default {
 
 <style lang="css" scoped>
 
+li {
+  text-decoration: none;
+  list-style: none;
+}
+
 </style>

@@ -41,4 +41,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#start-form{
+  text-align: center;
+}
 </style>

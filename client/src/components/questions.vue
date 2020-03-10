@@ -9,7 +9,9 @@
       :class=""
       v-html='answer'></button>
     </div>
-    <h2>{{total}}/10</h2>
+    <div class="score">
+      <h2>{{total}}/10</h2>
+    </div>
   </div>
 </template>
 
@@ -65,10 +67,12 @@ button {
   cursor: pointer;
   color: black;
   border-radius: 8px;
+  font-size: 1em;
+  font-family: 'Quicksand', sans-serif;
 }
 
 button:hover{
-
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)
 }
 
 .question {
@@ -79,6 +83,16 @@ button:hover{
   width: 60%;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
+}
+
+.score {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.score {
+  font-size: 3em;
 }
 
 .correct {

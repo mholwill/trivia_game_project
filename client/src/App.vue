@@ -87,7 +87,6 @@ export default {
 
   #app {
     font-family: 'Quicksand', sans-serif;
-    text-align: center;
     color: black;
     margin-top: 60px;
   }
@@ -97,6 +96,7 @@ export default {
     flex-direction: row;
     justify-content: center;
     margin-bottom: 30px;
+    text-align: center;
   }
 
   .menu li {
@@ -109,5 +109,6 @@ export default {
   h1 {
     font-size: 6em;
     line-height: 30px;
+    text-align: center;
   }
 </style>
