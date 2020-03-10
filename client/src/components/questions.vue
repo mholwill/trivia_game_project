@@ -17,7 +17,7 @@
 
 <script>
 import {eventBus} from '@/main.js'
-import {decode} from 'decode-html';
+
 export default {
   name:"question-asked",
   props:['questions', 'answers', 'total'],

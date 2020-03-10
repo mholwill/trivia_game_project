@@ -10,10 +10,10 @@
 </template>
 
 <script>
+import ScoreService from './services/ScoreService.js'
 import StartForm from '@/components/StartForm.vue';
 import {eventBus} from '@/main.js';
 import { shuffle } from 'lodash';
-import {decode} from 'decode-html';
 import Questions from '@/components/Questions.vue';
 import EndScore from '@/components/EndScore.vue'
 
