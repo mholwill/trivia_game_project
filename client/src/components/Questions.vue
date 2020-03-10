@@ -134,6 +134,8 @@ export default {
 
 .score {
   font-size: 3em;
+  color: #FFBA08;
+  -webkit-text-stroke: 2px black;
 }
 
 .correct {
