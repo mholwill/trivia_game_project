@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import ScoreService from '../services/ScoreService.js'
 import StartForm from '@/components/StartForm.vue';
 import {eventBus} from '@/main.js';
 import { shuffle } from 'lodash';
