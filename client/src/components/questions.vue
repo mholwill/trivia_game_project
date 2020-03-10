@@ -76,7 +76,7 @@ button:hover{
   border: 1px black solid;
   padding: 20px;
   border-radius: 8px;
-  width: 70%;
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
 }
