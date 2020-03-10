@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-    <h1>TRIVIA GAME</h1>
-    <component v-bind:is='component' :categories='categories' :questions="questions[index]" :answers="answers[index]" :total="total"/>
+    <h1>EXAMEN?</h1>
+    <div class="menu">
+      <li>Start Form</li>
+      <li>Top Scores</li>
+    </div>
+    <component v-bind:is='component' :categories='categories' :questions="questions[index]" :answers="answers[index]" :questionsAsked="questions" :total="total"/>
   </div>
 </template>
 
@@ -79,12 +83,32 @@ export default {
 </script>
 
 <style>
+
+  @import url('https://fonts.googleapis.com/css?family=Quicksand:600&display=swap');
+
   #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Quicksand', sans-serif;
     text-align: center;
     color: black;
     margin-top: 60px;
+  }
+
+  .menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  .menu li {
+    text-decoration: none;
+    list-style: none;
+    padding-right: 30px;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 6em;
+    line-height: 30px;
   }
 </style>

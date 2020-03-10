@@ -1,10 +1,14 @@
 <template lang="html">
   <div>
-    <h4 v-if="questions" v-html='questions.question'></h4>
-    <button v-for="(answer, index) in answers" :disabled="disabled"
-    @click="handleClick($event, index)"
-    :class=""
-    v-html='answer'></button>
+    <div class="question">
+      <h4 v-if="questions" v-html='questions.question'></h4>
+    </div>
+    <div id="buttons">
+      <button v-for="(answer, index) in answers" :disabled="disabled"
+      @click="handleClick($event, index)"
+      :class=""
+      v-html='answer'></button>
+    </div>
     <h2>{{total}}/10</h2>
   </div>
 </template>
@@ -24,6 +28,9 @@ export default {
     handleClick: function(event, index) {
       let payload = 0;
       this.disabled = true;
+      // if (this.questions.correct_answer){
+      //   event.target.classList.add('correct')
+      // }
       if (this.questions.correct_answer === this.answers[index]) {
         payload += 1
         event.target.classList.add('correct')
@@ -35,13 +42,44 @@ export default {
         event.target.classList.remove('wrong')
         this.disabled = false;
         eventBus.$emit('answer-selected', payload);
-      }, 2000)
+      }, 1000)
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
+
+#buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+button {
+  margin-top: 20px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  cursor: pointer;
+  color: black;
+  border-radius: 8px;
+}
+
+button:hover{
+
+}
+
+.question {
+  background-color: white;
+  border: 1px black solid;
+  padding: 20px;
+  border-radius: 8px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .correct {
   background-color: green;
