@@ -5,7 +5,8 @@
       <li>Start Form</li>
       <li>Top Scores</li>
     </div>
-    <component v-bind:is='component' :categories='categories' :questions="questions[index]" :answers="answers[index]" :questionsAsked="questions" :total="total"/>
+    <component v-bind:is='component' :categories='categories' :questions="questions[index]" :answers="answers[index]" :questionsAsked="questions" :total="total" :selectedCategory="selectedCategory" />
+
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import {eventBus} from '@/main.js';
 import { shuffle } from 'lodash';
 import Questions from '@/components/Questions.vue';
 import EndScore from '@/components/EndScore.vue'
+import EndScoreForm from '@/components/EndScoreForm.vue'
 
 export default {
   name: 'App',
@@ -27,7 +29,7 @@ export default {
       answers: [],
       index: 0,
       total: 0,
-      component: StartForm
+      component: EndScoreForm
     }
   },
   mounted(){
@@ -44,7 +46,7 @@ export default {
         this.questions = questions.results;
         this.formattedQuestions(questions.results);
       })
-      if (this.component === StartForm) {
+      if (this.component === EndScoreForm) {
         this.component = Questions;
       } else {
         this.component = StartForm;
@@ -63,7 +65,8 @@ export default {
   components: {
     StartForm,
     Questions,
-    EndScore
+    EndScore,
+    EndScoreForm
   },
   methods: {
     formattedQuestions: function (questions) {
