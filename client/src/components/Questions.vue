@@ -8,6 +8,8 @@
       @click="handleClick($event, index)"
       :class=""
       v-html='answer'></button>
+      <audio ref='audioCorrect' src='../../public/sounds/Mario-coin-sound.mp3'></audio>
+      <audio ref='audioWrong' src='../../public/sounds/Wrong-answer-sound-effect.mp3'></audio>
     </div>
     <div class="score">
       <h2>{{total}}/10</h2>
@@ -36,8 +38,10 @@ export default {
       if (this.questions.correct_answer === this.answers[index]) {
         payload += 1
         event.target.classList.add('correct')
+        this.$refs.audioCorrect.play();
       } else {
         event.target.classList.add('wrong')
+        this.$refs.audioWrong.play();
       }
       setTimeout(() => {
         event.target.classList.remove('correct')
