@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-const decode = require('decode-html');
+
 
 Vue.config.productionTip = false
 export const eventBus = new Vue();
