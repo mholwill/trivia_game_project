@@ -2,10 +2,11 @@
   <div id="app">
     <h1>.BrainTeaser.</h1>
   <div class="menu">
-    <li>Start Form</li>
-    <li>Top Scores</li>
+    <li><button @click="handleStartFormClick">New Game</button></li>
+    <li><button @click="handleTopScoresClick">Top Scores</button></li>
+    <li><button @click="handleMuteSoundsClick">{{(muted)?'Enable':'Mute'}} Sounds</button></li>
   </div>
-    <component v-bind:is='component' :categories='categories' :questions="questions[index]" :answers="answers[index]" :questionsAsked="questions" :total="total"/>
+    <component v-bind:is='component' :categories='categories' :questions="questions[index]" :answers="answers[index]" :questionsAsked="questions" :total="total" :topScores="topScores" :muted="muted"/>
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import { shuffle } from 'lodash';
 import Questions from '@/components/Questions.vue';
 import EndScore from '@/components/EndScore.vue'
 import EndScoreForm from '@/components/EndScoreForm.vue'
+import TopScores from '@/components/TopScores.vue'
 
 export default {
   name: 'App',
@@ -28,7 +30,9 @@ export default {
       answers: [],
       index: 0,
       total: 0,
-      component: StartForm
+      topScores: [],
+      component: StartForm,
+      muted: false
     }
   },
   mounted(){
@@ -68,18 +72,24 @@ export default {
         }
       })
       eventBus.$on('score-added', (payload) => {
-        if(this.component === EndScore) {
-          this.component = StartForm
+        ScoreService.postScores(payload)
+        .then(score => this.topScores.push(score))
+        if(this.component === EndScoreForm) {
+          this.component = TopScores
         } else {
-          this.component = EndScoreForm
-        }
-      })
+          this.component = StartForm
+        }//to be changed at some point
+      }),
+      ScoreService.getScores()
+      .then(data => this.topScores = data)
+
     },
   components: {
     StartForm,
     Questions,
     EndScore,
-    EndScoreForm
+    EndScoreForm,
+    TopScores
   },
   methods: {
     formattedQuestions: function (questions) {
@@ -90,6 +100,18 @@ export default {
 
         this.answers = [...this.answers, newArray]
       })
+    },
+    handleStartFormClick: function(){
+      this.index = 0;
+      this.total = 0;
+      this.answers = [];
+      this.component = StartForm
+    },
+    handleTopScoresClick: function(){
+      this.component = TopScores
+    },
+    handleMuteSoundsClick: function(){
+      this.muted = !this.muted
     }
   }
 }
