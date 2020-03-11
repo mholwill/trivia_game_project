@@ -4,8 +4,9 @@
   <div class="menu">
     <li><button @click="handleStartFormClick">New Game</button></li>
     <li><button @click="handleTopScoresClick">Top Scores</button></li>
+    <li><button @click="handleMuteSoundsClick">{{(muted)?'Enable':'Mute'}} Sounds</button></li>
   </div>
-    <component v-bind:is='component' :categories='categories' :questions="questions[index]" :answers="answers[index]" :questionsAsked="questions" :total="total" :topScores="topScores"/>
+    <component v-bind:is='component' :categories='categories' :questions="questions[index]" :answers="answers[index]" :questionsAsked="questions" :total="total" :topScores="topScores" :muted="muted"/>
   </div>
 </template>
 
@@ -30,7 +31,8 @@ export default {
       index: 0,
       total: 0,
       topScores: [],
-      component: StartForm
+      component: StartForm,
+      muted: false
     }
   },
   mounted(){
@@ -100,10 +102,16 @@ export default {
       })
     },
     handleStartFormClick: function(){
+      this.index = 0;
+      this.total = 0;
+      this.answers = [];
       this.component = StartForm
     },
     handleTopScoresClick: function(){
       this.component = TopScores
+    },
+    handleMuteSoundsClick: function(){
+      this.muted = !this.muted
     }
   }
 }

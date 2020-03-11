@@ -23,7 +23,7 @@ import {eventBus} from '@/main.js'
 
 export default {
   name:"question-asked",
-  props:['questions', 'answers', 'total'],
+  props:['questions', 'answers', 'total', 'muted'],
   data(){
     return{
       disabled: false,
@@ -45,10 +45,10 @@ export default {
       if (this.questions.correct_answer === this.answers[index]) {
         payload += 1
         event.target.classList.add('correct')
-        this.$refs.audioCorrect.play();
+        if (!this.muted)this.$refs.audioCorrect.play();
       } else {
         event.target.classList.add('wrong')
-        this.$refs.audioWrong.play();
+        if (!this.muted)this.$refs.audioWrong.play();
       }
       setTimeout(() => {
         this.$refs.button.forEach(button => {
