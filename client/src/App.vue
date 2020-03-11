@@ -70,6 +70,8 @@ export default {
         }
       })
       eventBus.$on('score-added', (payload) => {
+        ScoreService.postScores(payload)
+        .then(score => this.topScores.push(score))
         if(this.component === EndScoreForm) {
           this.component = TopScores
         } else {
@@ -78,6 +80,7 @@ export default {
       }),
       ScoreService.getScores()
       .then(data => this.topScores = data)
+
     },
   components: {
     StartForm,

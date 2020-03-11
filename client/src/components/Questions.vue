@@ -1,7 +1,9 @@
 <template lang="html">
   <div>
     <div class="question">
-      <h4 v-if="questions" v-html='questions.question'></h4>
+      <!-- <h4>{{questionNumber(question.id)}}</h4> -->
+      <h4>{{count}}/10</h4>
+      <h4 v-if="questions" v-html='questions.question'> </h4>
     </div>
     <div id="buttons">
       <button class="button-style bouncer" v-for="(answer, index) in answers" :disabled="disabled"
@@ -24,7 +26,8 @@ export default {
   props:['questions', 'answers', 'total'],
   data(){
     return{
-      disabled: false
+      disabled: false,
+      count: 1
     }
   },
   methods: {
@@ -38,6 +41,7 @@ export default {
       // if (this.questions.correct_answer){
       //   event.target.classList.add('correct')
       // }
+      // this.questions.correct_answer = event.target.classList.add('correct')
       if (this.questions.correct_answer === this.answers[index]) {
         payload += 1
         event.target.classList.add('correct')
@@ -53,9 +57,14 @@ export default {
         event.target.classList.remove('correct')
         event.target.classList.remove('wrong')
         this.disabled = false;
+        this.incrementCount();
         eventBus.$emit('answer-selected', payload);
       }, 1000)
+    },
+    incrementCount: function(){
+      this.count += 1
     }
+
   }
 }
 </script>
