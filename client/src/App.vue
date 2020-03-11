@@ -63,9 +63,15 @@ export default {
       eventBus.$on('saveyourscore', (payload) => {
         if(this.component === EndScore) {
           this.component = EndScoreForm
-        }
-        else {
+        }else {
           this.component = EndScore
+        }
+      })
+      eventBus.$on('score-added', (payload) => {
+        if(this.component === EndScore) {
+          this.component = StartForm
+        } else {
+          this.component = EndScoreForm
         }
       })
     },
