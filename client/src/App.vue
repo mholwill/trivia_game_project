@@ -2,9 +2,9 @@
   <div id="app">
     <h1>.BrainTeaser.</h1>
   <div class="menu">
-    <li><button @click="handleStartFormClick">New Game</button></li>
-    <li><button @click="handleTopScoresClick">Top Scores</button></li>
-    <li><button @click="handleMuteSoundsClick">{{(muted)?'Enable':'Mute'}} Sounds</button></li>
+    <button class="nav-button" @click="handleStartFormClick">New Game</button>
+    <button class="nav-button" @click="handleTopScoresClick">Top Scores</button>
+    <button class="nav-button" @click="handleMuteSoundsClick">{{(muted)?'Enable':'Mute'}} Sounds</button>
   </div>
     <component v-bind:is='component' :categories='categories' :questions="questions[index]" :answers="answers[index]" :questionsAsked="questions" :total="total" :topScores="topScores" :muted="muted"/>
   </div>
@@ -130,11 +130,11 @@ export default {
   }
 
   .menu{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
+    align-items: center;
+    margin: 0 25% 30px 25%;
   }
 
   .menu li {
@@ -146,10 +146,25 @@ export default {
 
   h1 {
     font-family: 'Bowlby One SC', cursive;
-    font-size: 6em;
+    font-size: 5em;
     line-height: 30px;
     text-align: center;
     color: #FFBA08;
     -webkit-text-stroke: 2px black;
+  }
+
+  .nav-button {
+    background-color: #FFBA08;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1em;
+    border: 2px #1C3144 solid;
+    padding: 10px;
+    border-radius: 8px;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
   }
 </style>

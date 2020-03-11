@@ -1,6 +1,6 @@
 <template lang="html">
-  <div id="start-form">
-      <form @submit.prevent="handleSubmit">
+  <div >
+      <form id="start-form" @submit.prevent="handleSubmit">
         <select class="submit-form" v-model="choosenCategory">
           <option value="" disabled selected hidden>Choose a category</option>
           <option v-for="(category, index) in categories" :key="index" :value="category.id">{{category.name}}</option>
@@ -47,6 +47,14 @@ export default {
 #start-form {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+}
+
+#start-form > select {
+  width: 30%;
+  margin: 30px auto;
+  border-radius: 8px;
+  text-indent: 5px;
 }
 
 .submit-form {
@@ -58,7 +66,9 @@ export default {
 
 .submit-button {
   margin-top: 20px;
-  width: 50%;
+  background-color: white;
+  width: 30%;
+  border: 2px #1C3144 solid;
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
@@ -67,6 +77,10 @@ export default {
   border-radius: 8px;
   font-size: 1em;
   font-family: 'Quicksand', sans-serif;
+}
+
+.submit-button:hover{
+  box-shadow: 0 8px 16px 0 #A2AEBB, 0 6px 20px 0 #A2AEBB
 }
 
 </style>
