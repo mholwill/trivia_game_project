@@ -40,10 +40,7 @@ export default {
 
       let payload = 0;
       this.disabled = true;
-      // if (this.questions.correct_answer){
-      //   event.target.classList.add('correct')
-      // }
-      // this.questions.correct_answer = event.target.classList.add('correct')
+
       if (this.questions.correct_answer === this.answers[index]) {
         payload += 1
         event.target.classList.add('correct')

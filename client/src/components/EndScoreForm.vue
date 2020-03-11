@@ -41,9 +41,6 @@ export default {
         Difficulty: this.questionsAsked[0].difficulty,
         Category: this.questionsAsked[0].category
       };
-      // ScoreService.postScores(payload)
-      // .then(scores => {
-      //   eventBus.$emit('score-added', scores);
       eventBus.$emit('score-added', payload)
       }
 
