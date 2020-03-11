@@ -2,18 +2,20 @@
   <div>
     <div class="question">
       <!-- <h4>{{questionNumber(question.id)}}</h4> -->
-      <h4>{{count}}/10</h4>
+      <h4>Question: {{count}} of 10</h4>
       <h4 v-if="questions" v-html='questions.question'> </h4>
     </div>
-    <div id="buttons">
-      <button class="button-style bouncer" v-for="(answer, index) in answers" :disabled="disabled"
-      @click="handleClick($event, index)"
-      v-html='answer' ref="button"></button>
-      <audio ref='audioCorrect' src='../../public/sounds/Mario-coin-sound.mp3'></audio>
-      <audio ref='audioWrong' src='../../public/sounds/Wrong-answer-sound-effect.mp3'></audio>
-    </div>
-    <div class="score">
-      <h2>{{total}}/10</h2>
+    <div id="content-container">
+      <div id="buttons">
+        <button class="button-style bouncer" v-for="(answer, index) in answers" :disabled="disabled"
+        @click="handleClick($event, index)"
+        v-html='answer' ref="button"></button>
+        <audio ref='audioCorrect' src='../../public/sounds/Mario-coin-sound.mp3'></audio>
+        <audio ref='audioWrong' src='../../public/sounds/Wrong-answer-sound-effect.mp3'></audio>
+      </div>
+      <div class="score">
+        <h2>{{total}}/10</h2>
+      </div>
     </div>
   </div>
 </template>
@@ -72,7 +74,6 @@ export default {
 <style lang="css" scoped>
 
 
-
 #buttons {
   display: flex;
   justify-content: center;
@@ -128,7 +129,7 @@ export default {
 .question {
   background-color: white;
   border: 2px #1C3144 solid;
-  padding: 20px;
+  padding: 15px;
   border-radius: 8px;
   width: 70%;
   margin-left: auto;
@@ -137,14 +138,18 @@ export default {
 }
 
 .score {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
   display: flex;
   justify-content: flex-end;
-}
-
-.score {
-  font-size: 3em;
+  font-size: 4em;
   color: #FFBA08;
   -webkit-text-stroke: 2px black;
+}
+
+.score h2 {
+  margin: 0;
 }
 
 .correct {
