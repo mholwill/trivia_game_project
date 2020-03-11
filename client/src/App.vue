@@ -2,8 +2,8 @@
   <div id="app">
     <h1>QUIZ</h1>
   <div class="menu">
-    <li>Start Form</li>
-    <li>Top Scores</li>
+    <li><button @click="handleStartFormClick">New Game</button></li>
+    <li><button @click="handleTopScoresClick">Top Scores</button></li>
   </div>
     <component v-bind:is='component' :categories='categories' :questions="questions[index]" :answers="answers[index]" :questionsAsked="questions" :total="total" :topScores="topScores"/>
   </div>
@@ -95,6 +95,12 @@ export default {
 
         this.answers = [...this.answers, newArray]
       })
+    },
+    handleStartFormClick: function(){
+      this.component = StartForm
+    },
+    handleTopScoresClick: function(){
+      this.component = TopScores
     }
   }
 }
