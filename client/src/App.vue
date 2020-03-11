@@ -5,7 +5,7 @@
     <li>Start Form</li>
     <li>Top Scores</li>
   </div>
-    <component v-bind:is='component' :categories='categories' :questions="questions[index]" :answers="answers[index]" :questionsAsked="questions" :total="total"/>
+    <component v-bind:is='component' :categories='categories' :questions="questions[index]" :answers="answers[index]" :questionsAsked="questions" :total="total" :topScores="topScores"/>
   </div>
 </template>
 
@@ -17,6 +17,7 @@ import { shuffle } from 'lodash';
 import Questions from '@/components/Questions.vue';
 import EndScore from '@/components/EndScore.vue'
 import EndScoreForm from '@/components/EndScoreForm.vue'
+import TopScores from '@/components/TopScores.vue'
 
 export default {
   name: 'App',
@@ -28,6 +29,7 @@ export default {
       answers: [],
       index: 0,
       total: 0,
+      topScores: [],
       component: StartForm
     }
   },
@@ -68,18 +70,21 @@ export default {
         }
       })
       eventBus.$on('score-added', (payload) => {
-        if(this.component === EndScore) {
-          this.component = StartForm
+        if(this.component === EndScoreForm) {
+          this.component = TopScores
         } else {
-          this.component = EndScoreForm
-        }
-      })
+          this.component = StartForm
+        }//to be changed at some point
+      }),
+      ScoreService.getScores()
+      .then(data => this.topScores = data)
     },
   components: {
     StartForm,
     Questions,
     EndScore,
-    EndScoreForm
+    EndScoreForm,
+    TopScores
   },
   methods: {
     formattedQuestions: function (questions) {
