@@ -6,19 +6,17 @@
         <input type="text" id="name" v-model="name" required/>
       </div>
       <div class="formWrap">
-        Category: {{}}
+        <label for="category">Category: </label>
+        <input type="text" id="category" :value="questionsAsked[0].category"/>
       </div>
-
       <div class="formWrap">
-        Total points:
-        <input type="text" id="score" v-model="score"/>
+        <label for="score">Total Score: </label>
+        <input type="text" id="score" :value="total"/>
       </div>
       <div class="formWrap">
         <label for="difficulty">Difficulty: </label>
-        <input type="text" id="difficulty" v-model="difficulty" value="questionsAsked.difficulty"/>
-
+        <input type="text" id="difficulty" :value="questionsAsked[0].difficulty"/>
       </div>
-
       <input type="submit" value="Save" id="save"/>
     </form>
   </div>
@@ -31,11 +29,7 @@ export default {
   name: 'endscoreform',
   data() {
     return {
-      name: '',
-      category: '',
-      score: '',
-      difficulty: ''
-
+      name: ''
     }
   },
   methods: {
@@ -43,9 +37,9 @@ export default {
       evt.preventDefault();
       const payload = {
         name: this.name,
-        total: this.score,
-        difficulty: this.difficulty,
-        category: this.category
+        total: this.total,
+        difficulty: this.questionsAsked.difficulty,
+        category: this.questionsAsked.category
       };
       ScoreService.postScores(payload)
       .then(scores => {
