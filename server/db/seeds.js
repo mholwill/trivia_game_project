@@ -3,8 +3,9 @@ db.dropDatabase();
 
 db.scores.insertMany([
   {
-    name: "John Harper",
-    score: 6,
-    difficulty: "medium"
+    Name: "John Harper",
+    Score: 6,
+    Difficulty: "medium",
+    Category: "Animals"
   }
 ])

@@ -46,7 +46,7 @@ export default {
         this.formattedQuestions(questions.results);
       })
       if (this.component === StartForm) {
-        this.component = EndScoreForm;
+        this.component = Questions;
       } else {
         this.component = StartForm;
       }

@@ -36,10 +36,10 @@ export default {
     handleSubmit(evt){
       evt.preventDefault();
       const payload = {
-        name: this.name,
-        total: this.total,
-        difficulty: this.questionsAsked.difficulty,
-        category: this.questionsAsked.category
+        Name: this.name,
+        Score: this.total,
+        Difficulty: this.questionsAsked[0].difficulty,
+        Category: this.questionsAsked[0].category
       };
       ScoreService.postScores(payload)
       .then(scores => {
