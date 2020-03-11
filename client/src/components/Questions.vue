@@ -148,10 +148,10 @@ export default {
 }
 
 .correct {
-  background-color: #3EA03B;
+  background-color: lightgreen;
 }
 
 .wrong {
-  background-color: #d00000;
+  background-color: salmon;
 }
 </style>
