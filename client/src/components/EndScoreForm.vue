@@ -72,6 +72,7 @@ export default {
   text-transform: capitalize;
 }
 
+
 .submit-button {
   margin-top: 20px;
   background-color: white;

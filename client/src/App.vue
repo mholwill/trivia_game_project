@@ -50,7 +50,7 @@ export default {
         this.formattedQuestions(questions.results);
       })
       if (this.component === StartForm) {
-        this.component = Questions;
+        this.component = EndScore;
       } else {
         this.component = StartForm;
       }
@@ -166,5 +166,9 @@ export default {
     text-align: center;
     outline: none;
     cursor: pointer;
+  }
+
+  .nav-button:hover {
+    box-shadow: 0 8px 16px 0 #A2AEBB, 0 6px 20px 0 #A2AEBB
   }
 </style>
