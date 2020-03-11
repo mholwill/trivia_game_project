@@ -33,7 +33,7 @@ export default {
         return -1;
         return 0;
       }
-      return this.topScores.sort(compare)
+      return this.topScores.sort(compare).slice(0, 15)
     }
   }
 }
