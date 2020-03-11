@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>QUIZ</h1>
+    <h1>.BrainTeaser.</h1>
   <div class="menu">
     <li>Start Form</li>
     <li>Top Scores</li>
