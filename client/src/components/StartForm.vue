@@ -59,6 +59,7 @@ export default {
   border: 2px #1C3144 solid;
   cursor: pointer;
   font-family: 'Quicksand', sans-serif;
+  outline: none;
 }
 
 .submit-form {
@@ -81,6 +82,7 @@ export default {
   border-radius: 8px;
   font-size: 1em;
   font-family: 'Quicksand', sans-serif;
+  outline: none;
 }
 
 .submit-button:hover{
