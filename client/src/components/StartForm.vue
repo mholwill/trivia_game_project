@@ -55,6 +55,11 @@ export default {
   margin: 30px auto;
   border-radius: 8px;
   text-indent: 5px;
+  font-size: 1.25em;
+  border: 2px #1C3144 solid;
+  cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+  outline: none;
 }
 
 .submit-form {
@@ -67,7 +72,7 @@ export default {
 .submit-button {
   margin-top: 20px;
   background-color: white;
-  width: 30%;
+  width: 35%;
   border: 2px #1C3144 solid;
   margin-left: auto;
   margin-right: auto;
@@ -77,6 +82,7 @@ export default {
   border-radius: 8px;
   font-size: 1em;
   font-family: 'Quicksand', sans-serif;
+  outline: none;
 }
 
 .submit-button:hover{

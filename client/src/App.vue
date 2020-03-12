@@ -2,8 +2,8 @@
   <div id="app">
     <h1>.BrainTeaser.</h1>
   <div class="menu">
-    <button class="nav-button" @click="handleStartFormClick">New Game</button>
-    <button class="nav-button" @click="handleTopScoresClick">Top Scores</button>
+    <button class="nav-button" @click="handleStartFormClick($event)">New Game</button>
+    <button class="nav-button" @click="handleTopScoresClick($event)">Top Scores</button>
     <button class="nav-button" @click="handleMuteSoundsClick">{{(muted)?'Enable':'Mute'}} Sounds</button>
   </div>
     <component v-bind:is='component' :categories='categories' :questions="questions[index]" :answers="answers[index]" :questionsAsked="questions" :total="total" :topScores="topScores" :muted="muted"/>
@@ -170,5 +170,12 @@ export default {
 
   .nav-button:hover {
     box-shadow: 0 8px 16px 0 #A2AEBB, 0 6px 20px 0 #A2AEBB
+  }
+
+  .active-TS {
+    border: 2px red solid;
+  }
+  .active-SF {
+    border: 2px red solid;
   }
 </style>
