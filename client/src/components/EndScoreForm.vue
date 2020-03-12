@@ -71,6 +71,8 @@ input[type="text"] {
   padding: 5px;
   border-radius: 8px;
   margin: 20px 0;
+  outline: none;
+  cursor: pointer;
 }
 
 .savedData input[type="text"]{

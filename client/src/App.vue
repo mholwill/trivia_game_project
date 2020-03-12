@@ -50,7 +50,7 @@ export default {
         this.formattedQuestions(questions.results);
       })
       if (this.component === StartForm) {
-        this.component = EndScore;
+        this.component = Questions;
       } else {
         this.component = StartForm;
       }
@@ -106,13 +106,9 @@ export default {
       this.total = 0;
       this.answers = [];
       this.component = StartForm
-      event.target.classList.add('active-SF')
-      event.target.classList.remove('active-TS')
     },
     handleTopScoresClick: function(){
       this.component = TopScores
-      event.target.classList.add('active-TS')
-      event.target.classList.remove('active-SF')
     },
     handleMuteSoundsClick: function(){
       this.muted = !this.muted
