@@ -6,17 +6,17 @@
         <br>
         <input type="text" id="name" v-model="name" required/>
       </div>
-      <div class="formWrap">
+      <div class="savedData">
         <label for="category">Category: </label>
         <br>
         <input disabled="disabled" type="text" id="category" :value="questionsAsked[0].category"/>
       </div>
-      <div class="formWrap">
+      <div class="savedData">
         <label for="score">Total Score: </label>
         <br>
         <input disabled="disabled" type="text" id="score" :value="total"/>
       </div>
-      <div class="formWrap">
+      <div class="savedData">
         <label for="difficulty">Difficulty: </label>
         <br>
         <input disabled="disabled" type="text" id="difficulty" :value="questionsAsked[0].difficulty"/>
@@ -63,12 +63,23 @@ export default {
   font-size: 1.5em;
 }
 
-.formWrap input{
+.savedData {
+  font-size: 1.5em;
+}
+
+input[type="text"] {
+  padding: 5px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.savedData input[type="text"]{
   font-size: 0.75em;
   padding: 5px;
   border-radius: 8px;
-  margin: 10px 0;
-  background-color: none;
+  margin: 20px 0;
+  background: none;
+  border: none;
   text-transform: capitalize;
 }
 
