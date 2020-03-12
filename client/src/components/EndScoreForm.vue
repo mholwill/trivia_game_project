@@ -71,6 +71,7 @@ input[type="text"] {
   padding: 5px;
   border-radius: 8px;
   margin: 20px 0;
+  width: 100%;
   outline: none;
   cursor: pointer;
 }
@@ -79,6 +80,7 @@ input[type="text"] {
   font-size: 0.75em;
   padding: 5px;
   border-radius: 8px;
+  width: 400px;
   margin: 20px 0;
   background: none;
   border: none;
