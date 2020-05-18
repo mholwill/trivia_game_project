@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import ScoreService from './services/ScoreService.js'
+// import ScoreService from './services/ScoreService.js'
 import StartForm from '@/components/StartForm.vue';
 import {eventBus} from '@/main.js';
 import { shuffle } from 'lodash';
@@ -19,6 +19,8 @@ import Questions from '@/components/Questions.vue';
 import EndScore from '@/components/EndScore.vue'
 import EndScoreForm from '@/components/EndScoreForm.vue'
 import TopScores from '@/components/TopScores.vue'
+import firebase from "./firebaseInit";
+const db = firebase.firestore();
 
 export default {
   name: 'App',
@@ -72,7 +74,7 @@ export default {
         }
       })
       eventBus.$on('score-added', (payload) => {
-        ScoreService.postScores(payload)
+        this.createTopScore(payload)
         .then(score => this.topScores.push(score))
         if(this.component === EndScoreForm) {
           this.component = TopScores
@@ -80,9 +82,8 @@ export default {
           this.component = StartForm
         }//to be changed at some point
       }),
-      ScoreService.getScores()
+      this.getTopScores()
       .then(data => this.topScores = data)
-
     },
   components: {
     StartForm,
@@ -112,7 +113,41 @@ export default {
     },
     handleMuteSoundsClick: function(){
       this.muted = !this.muted
-    }
+    },
+    getTopScores() {
+      let topScoreData = [];
+      db.collection("players")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+           topScoreData.push({
+              id: doc.id,
+              Name: doc.data().name,
+              Score: doc.data().score,
+              Difficulty: doc.data().difficulty,
+              Category: doc.data().category
+            });
+            console.log(doc.id, " => ", doc.data());
+          });
+          return topScoreData
+        })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
+        });
+    },
+    createTopScore(name, score, difficulty, category) {
+      if (name != "") {
+        db.collection("players")
+          .add({ Name: name, Score: score, Difficulty: difficulty, Category: category })
+          .then(() => {
+            console.log("Document successfully written!");
+            this.readEmployees();
+          })
+          .catch((error) => {
+            console.error("Error writing document: ", error);
+          });
+      }
+      }
   }
 }
 </script>
