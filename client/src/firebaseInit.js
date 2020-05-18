@@ -1,21 +1,14 @@
 import firebase from "firebase";
 
-    {/* The core Firebase JS SDK is always required and must be listed first */}
-    src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js">
-
-    {/* TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries */}
-
- 
     {/* Your web app's Firebase configuration */}
     const firebaseConfig = {
-    apiKey: "AIzaSyAWHsBmpYanz3CtYtPL9WazpeJPEjV4UGc",
-    authDomain: "brainteaser-68ab2.firebaseapp.com",
-    databaseURL: "https://brainteaser-68ab2.firebaseio.com",
-    projectId: "brainteaser-68ab2",
-    storageBucket: "brainteaser-68ab2.appspot.com",
-    messagingSenderId: "187690493878",
-    appId: "1:187690493878:web:f8599c38a136a92187c317"
+        apiKey: "AIzaSyAECGMu2fbdxCfJThcHPD3cwfX2F8gXfuo",
+        authDomain: "brainteaser2.firebaseapp.com",
+        databaseURL: "https://brainteaser2.firebaseio.com",
+        projectId: "brainteaser2",
+        storageBucket: "brainteaser2.appspot.com",
+        messagingSenderId: "812882876107",
+        appId: "1:812882876107:web:9bcf066030782a65c6ed4e"
     };
 
 

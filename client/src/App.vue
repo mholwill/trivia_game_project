@@ -38,9 +38,11 @@ export default {
     }
   },
   mounted(){
+
     fetch('https://opentdb.com/api_category.php')
     .then(res => res.json())
     .then(categories => this.categories = categories.trivia_categories)
+    
 
     eventBus.$on('category-selected', (payload) => {
       this.selectedCategory = payload;
@@ -74,6 +76,7 @@ export default {
         }
       })
       eventBus.$on('score-added', (payload) => {
+        console.log(payload)
         this.createTopScore(payload)
         .then(score => this.topScores.push(score))
         if(this.component === EndScoreForm) {
@@ -83,7 +86,6 @@ export default {
         }//to be changed at some point
       }),
       this.getTopScores()
-      .then(data => this.topScores = data)
     },
   components: {
     StartForm,
@@ -115,21 +117,20 @@ export default {
       this.muted = !this.muted
     },
     getTopScores() {
-      let topScoreData = [];
+      this.topScores = []
       db.collection("players")
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-           topScoreData.push({
+           this.topScores.push({
               id: doc.id,
-              Name: doc.data().name,
-              Score: doc.data().score,
-              Difficulty: doc.data().difficulty,
-              Category: doc.data().category
+              name: doc.data().name,
+              score: doc.data().score,
+              difficulty: doc.data().difficulty,
+              category: doc.data().category
             });
-            console.log(doc.id, " => ", doc.data());
+            console.log(doc.data());
           });
-          return topScoreData
         })
         .catch((error) => {
           console.log("Error getting documents: ", error);
@@ -138,10 +139,9 @@ export default {
     createTopScore(name, score, difficulty, category) {
       if (name != "") {
         db.collection("players")
-          .add({ Name: name, Score: score, Difficulty: difficulty, Category: category })
+          .add({ name: name, score: score, difficulty: difficulty, category: category })
           .then(() => {
             console.log("Document successfully written!");
-            this.readEmployees();
           })
           .catch((error) => {
             console.error("Error writing document: ", error);

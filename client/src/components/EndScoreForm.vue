@@ -14,7 +14,7 @@
       <div class="savedData">
         <label for="score">Total Score: </label>
         <br>
-        <input disabled="disabled" type="text" id="score" :value="total"/>
+        <input disabled="disabled" type="number" id="score" :value="total"/>
       </div>
       <div class="savedData">
         <label for="difficulty">Difficulty: </label>
@@ -27,7 +27,8 @@
 </template>
 
 <script>
-import ScoreService from '../services/ScoreService.js'
+// import ScoreService from '../services/ScoreService.js'
+import firebase from "../firebaseInit";
 import {eventBus} from '@/main.js';
 export default {
   name: 'endscoreform',
@@ -40,10 +41,10 @@ export default {
     handleSubmit(evt){
       evt.preventDefault();
       const payload = {
-        Name: this.name,
-        Score: this.total,
-        Difficulty: this.questionsAsked[0].difficulty,
-        Category: this.questionsAsked[0].category
+        name: this.name,
+        score: this.total,
+        difficulty: this.questionsAsked[0].difficulty,
+        category: this.questionsAsked[0].category
       };
         eventBus.$emit('score-added', payload);
     }
@@ -68,6 +69,15 @@ export default {
 }
 
 input[type="text"] {
+  padding: 5px;
+  border-radius: 8px;
+  margin: 20px 0;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="number"] {
   padding: 5px;
   border-radius: 8px;
   margin: 20px 0;

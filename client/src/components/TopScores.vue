@@ -10,10 +10,10 @@
       </tr>
 
       <tr class="top-three" v-for="scores in filterScores">
-        <td>{{scores.Name}}</td>
-        <td>{{scores.Category}}</td>
-        <td>{{scores.Difficulty}}</td>
-        <td>{{scores.Score}}</td>
+        <td>{{scores.name}}</td>
+        <td>{{scores.category}}</td>
+        <td>{{scores.difficulty}}</td>
+        <td>{{scores.score}}</td>
       </tr>
     </table>
   </div>
@@ -24,7 +24,13 @@
 export default {
   name: 'top-scores',
   props: ['topScores'],
+
+  mounted() {
+      console.log(this.filterScores[0])
+      console.log(this.topScores[0])
+  },
   computed: {
+    
     filterScores: function (){
       function compare(a, b) {
         if (a.Score < b.Score)
@@ -34,6 +40,7 @@ export default {
         return 0;
       }
       return this.topScores.sort(compare).slice(0, 10)
+      
     }
   }
 }
