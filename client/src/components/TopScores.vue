@@ -10,10 +10,10 @@
       </tr>
 
       <tr class="top-three" v-for="scores in filterScores">
-        <td>{{scores.Name}}</td>
-        <td>{{scores.Category}}</td>
-        <td>{{scores.Difficulty}}</td>
-        <td>{{scores.Score}}</td>
+        <td>{{scores.name}}</td>
+        <td>{{scores.category}}</td>
+        <td>{{scores.difficulty}}</td>
+        <td>{{scores.score}}</td>
       </tr>
     </table>
   </div>
@@ -27,9 +27,9 @@ export default {
   computed: {
     filterScores: function (){
       function compare(a, b) {
-        if (a.Score < b.Score)
+        if (a.score < b.score)
         return 1;
-        if (a.Score > b.Score)
+        if (a.score > b.score)
         return -1;
         return 0;
       }

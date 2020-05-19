@@ -5,10 +5,6 @@
   <div id="button-container">
     <button class='save-button' @click="handleClick">Would you like to save your score?</button>
   </div>
-  <!-- <ul  v-for="question in questionsAsked">
-    <p v-html="question.question"></p>
-    <p>Correct Answer: </p><p v-html="question.correct_answer"></p>
-  </ul> -->
   <div class="tableDiv">
   <table id="table-container">
     <tr>

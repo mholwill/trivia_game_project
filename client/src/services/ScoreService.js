@@ -1,19 +1,19 @@
-const baseURL = 'http://localhost:3000/api/scores/'
-export default {
+// const baseURL = 'http://localhost:3000/api/scores/'
+// export default {
 
 
-  getScores(){
-    return fetch(baseURL)
-    .then(res => res.json())
-  },
+//   getScores(){
+//     return fetch(baseURL)
+//     .then(res => res.json())
+//   },
 
 
-  postScores(payload){
-    return fetch(baseURL, {
-      method: 'POST',
-      body: JSON.stringify(payload),
-      headers: { 'Content-Type': 'application/json'}
-    })
-    .then(res => res.json())
-  },
-}
+//   postScores(payload){
+//     return fetch(baseURL, {
+//       method: 'POST',
+//       body: JSON.stringify(payload),
+//       headers: { 'Content-Type': 'application/json'}
+//     })
+//     .then(res => res.json())
+//   },
+// }

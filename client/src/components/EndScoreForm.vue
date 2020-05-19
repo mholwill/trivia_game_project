@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import ScoreService from '../services/ScoreService.js'
+// import ScoreService from '../services/ScoreService.js'
 import {eventBus} from '@/main.js';
 export default {
   name: 'endscoreform',
@@ -40,12 +40,11 @@ export default {
     handleSubmit(evt){
       evt.preventDefault();
       const payload = {
-        Name: this.name,
-        Score: this.total,
-        Difficulty: this.questionsAsked[0].difficulty,
-        Category: this.questionsAsked[0].category
+        name: this.name,
+        score: this.total,
+        difficulty: this.questionsAsked[0].difficulty,
+        category: this.questionsAsked[0].category
       };
-        eventBus.$emit('score-added', payload);
     }
   },
   props: ['questionsAsked', 'total']

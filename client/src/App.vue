@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import ScoreService from './services/ScoreService.js'
+// import ScoreService from './services/ScoreService.js'
 import StartForm from '@/components/StartForm.vue';
 import {eventBus} from '@/main.js';
 import { shuffle } from 'lodash';
@@ -19,6 +19,11 @@ import Questions from '@/components/Questions.vue';
 import EndScore from '@/components/EndScore.vue'
 import EndScoreForm from '@/components/EndScoreForm.vue'
 import TopScores from '@/components/TopScores.vue'
+import firebase from "./firebaseInit";
+const db = firebase.firestore();
+// const playersCollection = db.collection('players');
+
+
 
 export default {
   name: 'App',
@@ -32,13 +37,15 @@ export default {
       total: 0,
       topScores: [],
       component: StartForm,
-      muted: false
+      muted: true
     }
   },
   mounted(){
+
     fetch('https://opentdb.com/api_category.php')
     .then(res => res.json())
     .then(categories => this.categories = categories.trivia_categories)
+
 
     eventBus.$on('category-selected', (payload) => {
       this.selectedCategory = payload;
@@ -72,18 +79,15 @@ export default {
         }
       })
       eventBus.$on('score-added', (payload) => {
-        ScoreService.postScores(payload)
-        .then(score => this.topScores.push(score))
+        this.createTopScore(payload)
         if(this.component === EndScoreForm) {
+          
           this.component = TopScores
+          this.getTopScores()
         } else {
           this.component = StartForm
-        }//to be changed at some point
-      }),
-      ScoreService.getScores()
-      .then(data => this.topScores = data)
-
-    },
+        }
+      })},
   components: {
     StartForm,
     Questions,
@@ -108,11 +112,46 @@ export default {
       this.component = StartForm
     },
     handleTopScoresClick: function(){
+      this.getTopScores()
       this.component = TopScores
+      
     },
     handleMuteSoundsClick: function(){
       this.muted = !this.muted
-    }
+    },
+    getTopScores() {
+      this.topScores = []
+      db.collection("players")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            this.topScores.push({
+              id: doc.id,
+              name: doc.data().name,
+              score: doc.data().score,
+              difficulty: doc.data().difficulty,
+              category: doc.data().category
+            });
+            console.log(doc.data());
+          });
+        })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
+        });
+    },
+    createTopScore(payload) {
+      if (payload.name != "") {
+        db.collection("players")      
+          .add({ name: payload.name, score: payload.score, difficulty: payload.difficulty, category: payload.category })
+          .then(() => {
+            console.log("Document successfully written!");
+            this.getTopScores();
+          })
+          .catch((error) => {
+            console.error("Error writing document: ", error);
+          });
+      }
+      }
   }
 }
 </script>
