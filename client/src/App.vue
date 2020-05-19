@@ -11,7 +11,7 @@
 </template>
 
 <script>
-// import ScoreService from './services/ScoreService.js'
+
 import StartForm from '@/components/StartForm.vue';
 import {eventBus} from '@/main.js';
 import { shuffle } from 'lodash';
@@ -21,6 +21,8 @@ import EndScoreForm from '@/components/EndScoreForm.vue'
 import TopScores from '@/components/TopScores.vue'
 import firebase from "./firebaseInit";
 const db = firebase.firestore();
+
+
 
 export default {
   name: 'App',
