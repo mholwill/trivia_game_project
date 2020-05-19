@@ -27,7 +27,7 @@
 </template>
 
 <script>
-// import ScoreService from '../services/ScoreService.js'
+import ScoreService from '../services/ScoreService.js'
 import {eventBus} from '@/main.js';
 export default {
   name: 'endscoreform',
@@ -45,6 +45,7 @@ export default {
         difficulty: this.questionsAsked[0].difficulty,
         category: this.questionsAsked[0].category
       };
+        eventBus.$emit('score-added', payload);
     }
   },
   props: ['questionsAsked', 'total']

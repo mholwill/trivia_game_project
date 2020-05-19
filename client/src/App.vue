@@ -80,13 +80,14 @@ export default {
       })
       eventBus.$on('score-added', (payload) => {
         this.createTopScore(payload)
+        // .then(score => this.topScores.push(score))
         if(this.component === EndScoreForm) {
           
           this.component = TopScores
           this.getTopScores()
         } else {
           this.component = StartForm
-        }
+        }//to be changed at some point
       })},
   components: {
     StartForm,
@@ -140,6 +141,10 @@ export default {
         });
     },
     createTopScore(payload) {
+      console.log("this is name in createTopScore" + payload.name)
+      console.log("this is score in createTopScore" + payload.score)
+      console.log("this is difficulty in createTopScore" + payload.difficulty)
+      console.log("this is category in createTopScore" + payload.category)
       if (payload.name != "") {
         db.collection("players")      
           .add({ name: payload.name, score: payload.score, difficulty: payload.difficulty, category: payload.category })
