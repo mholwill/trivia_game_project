@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import ScoreService from '../services/ScoreService.js'
+
 import {eventBus} from '@/main.js';
 export default {
   name: 'endscoreform',
